@@ -1,6 +1,7 @@
+import NoteButton from './NoteButton'
 import ToggleTheme from './ToggleTheme'
 
-export default function SideBar({ isOpen }) {
+export default function SideBar({ isOpen, notes, setSelectedNote }) {
 	return (
 		<>
 			<aside
@@ -13,15 +14,17 @@ export default function SideBar({ isOpen }) {
 					<ToggleTheme />
 				</div>
 				<ul className='grow'>
-					<li className='p-2.5 bg-white mb-1.5 rounded-2xl cursor-pointer text-black dark:bg-black dark:text-white'>
-						First Note
-					</li>
-					<li className='p-2.5 bg-white mb-1.5 rounded-2xl cursor-pointer text-black dark:bg-black dark:text-white'>
-						Second Note
-					</li>
-					<li className='p-2.5 bg-white mb-1.5 rounded-2xl cursor-pointer text-black dark:bg-black dark:text-white'>
-						Third Note
-					</li>
+					{notes.length > 0 ? (
+						notes.map(note => (
+							<NoteButton
+								key={note.id}
+								note={note}
+								onChange={setSelectedNote}
+							/>
+						))
+					) : (
+						<p className='dark:text-black'>List is empty</p>
+					)}
 				</ul>
 				<button className='bg-white text-black p-2.5 border-none rounded-2xl cursor-pointer'>
 					+ Add Note

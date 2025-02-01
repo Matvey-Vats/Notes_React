@@ -1,10 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export default function Header({ saveNote, deleteNote, toggleEdit }) {
+export default function Header({
+	saveNote,
+	deleteNote,
+	toggleEdit,
+	noteBody,
+	selectedNote,
+}) {
 	const [text, setText] = useState('')
+
+	useEffect(() => {
+		if (selectedNote) {
+			setText(selectedNote.title)
+		}
+	}, [selectedNote])
 
 	function handleTitleInput(e) {
 		setText(e.target.value)
+	}
+
+	function handleDelete() {
+		if (selectedNote) {
+			deleteNote(selectedNote.id)
+		}
 	}
 
 	return (
@@ -18,19 +36,21 @@ export default function Header({ saveNote, deleteNote, toggleEdit }) {
 			/>
 			<div className='max-[420px]:flex max-[420px]:flex-col max-[420px]:w-full max-[420px]:gap-y-[10px]'>
 				<button
-					onClick={saveNote}
+					onClick={() =>
+						saveNote({ id: Date.now(), title: text, body: noteBody })
+					}
 					className='ml-2.5 py-1.25 px-2.5 border-none cursor-pointer bg-green-400 rounded-3xl text-white'
 				>
 					Save
 				</button>
 				<button
-					onClick={deleteNote}
+					onClick={() => toggleEdit()}
 					className='ml-2.5 py-1.25 px-2.5 border-none cursor-pointer text-white bg-amber-500 rounded-3xl'
 				>
 					Edit
 				</button>
 				<button
-					onClick={toggleEdit}
+					onClick={handleDelete}
 					className='ml-2.5 py-1.25 px-2.5 border-none cursor-pointer text-white bg-red-500 rounded-3xl'
 				>
 					Delete
