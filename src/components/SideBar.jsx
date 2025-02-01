@@ -4,8 +4,8 @@ export default function SideBar({ isOpen }) {
 	return (
 		<>
 			<aside
-				className={`w-3xs bg-neutral-800 text-white p-5 flex flex-col transition-transform duration-300 ease-in-out dark:bg-white max-md:fixed max-md:top-0 max-md:left-0 max-md:h-full max-md:z-50 max-md:${
-					isOpen ? 'translate-x-0' : '-translate-x-full'
+				className={`w-3xs bg-neutral-800 text-white p-5 flex flex-col transition-transform duration-300 ease-in-out dark:bg-white max-md:fixed max-md:top-0 max-md:left-0 max-md:h-full max-md:z-50 ${
+					isOpen ? 'max-md:translate-x-0' : 'max-md:-translate-x-full'
 				}`}
 			>
 				<div className='flex items-center justify-between'>

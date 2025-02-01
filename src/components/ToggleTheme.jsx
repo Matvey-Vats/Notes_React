@@ -1,25 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import moon from '../assets/moon-solid.svg'
 import sun from '../assets/sun-solid.svg'
 
 export default function ToggleTheme() {
-	const [isDarkMode, setIsDarkMode] = useState(false)
+	const [isDarkMode, setIsDarkMode] = useState(
+		() => localStorage.getItem('theme') === 'dark'
+	)
 
-	// useEffect(() => {
-	// 	const savedTheme = localStorage.getItem('theme')
-	// 	if (savedTheme) {
-	// 		setIsDarkMode(savedTheme === 'dark')
-	// 	}
-	// }, [])
+	useEffect(() => {
+		if (isDarkMode) {
+			document.body.classList.add('dark')
+		} else {
+			document.body.classList.remove('dark')
+		}
+
+		localStorage.setItem('theme', isDarkMode ? 'dark' : 'light')
+	}, [isDarkMode])
 
 	function toggleTheme() {
-		setIsDarkMode(!isDarkMode)
-		// const newTheme = !isDarkMode ? 'dark' : 'light'
-		// localStorage.setItem('theme', newTheme)
-		document.body.classList.toggle('dark')
+		setIsDarkMode(prev => !prev)
 	}
-
-	// useEffect(() => {}, [isDarkMode])
 
 	return (
 		<>
