@@ -6,12 +6,14 @@ import SideBar from './components/SideBar'
 
 function App() {
 	const [isOpen, setIsOpen] = useState(false)
+	const [body, setBody] = useState('')
 	const [notes, setNotes] = useState(() => {
 		const savedNotes = localStorage.getItem('notes')
 		return savedNotes ? JSON.parse(savedNotes) : []
 	})
 	const [noteBody, setNoteBody] = useState('')
 	const [selectedNote, setSelectedNote] = useState(null)
+	const [isEditing, setIsEditing] = useState(true)
 
 	useEffect(() => {
 		localStorage.setItem('notes', JSON.stringify(notes))
@@ -23,17 +25,18 @@ function App() {
 
 	function deleteNote(id) {
 		setNotes(notes.filter(note => note.id !== id))
-		setNoteBody('')
 	}
 
-	function toggleEdit() {}
+	function toggleEdit() {
+		setIsEditing(prev => !prev)
+	}
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen)
 	}
 
 	return (
-		<div className='flex w-full h-screen dark:bg-neutral-800 dark:text-white'>
+		<div className='flex w-full h-screen dark:bg-neutral-800 dark:text-white max-md:px-3.5'>
 			<SideBar
 				isOpen={isOpen}
 				notes={notes}
@@ -46,9 +49,19 @@ function App() {
 					deleteNote={deleteNote}
 					toggleEdit={toggleEdit}
 					noteBody={noteBody}
+					setBody={setBody}
 					selectedNote={selectedNote}
+					setSelectedNote={setSelectedNote}
+					setNoteBody={setNoteBody}
 				/>
-				<NoteBody setNoteBody={setNoteBody} selectedNote={selectedNote} />
+				<NoteBody
+					body={body}
+					setBody={setBody}
+					setNoteBody={setNoteBody}
+					selectedNote={selectedNote}
+					isEditing={isEditing}
+					setIsEditing={setIsEditing}
+				/>
 			</main>
 		</div>
 	)

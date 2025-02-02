@@ -5,7 +5,9 @@ export default function Header({
 	deleteNote,
 	toggleEdit,
 	noteBody,
+	setBody,
 	selectedNote,
+	setNoteBody,
 }) {
 	const [text, setText] = useState('')
 
@@ -22,7 +24,19 @@ export default function Header({
 	function handleDelete() {
 		if (selectedNote) {
 			deleteNote(selectedNote.id)
+			setText('')
+			setBody('')
+			setNoteBody('')
 		}
+	}
+
+	function handleSave() {
+		if (text.trim() === '' && noteBody.trim() === '') return
+		console.log(noteBody)
+		saveNote({ id: Date.now(), title: text, body: noteBody })
+		setText('')
+		setBody('')
+		setNoteBody('')
 	}
 
 	return (
@@ -36,9 +50,7 @@ export default function Header({
 			/>
 			<div className='max-[420px]:flex max-[420px]:flex-col max-[420px]:w-full max-[420px]:gap-y-[10px]'>
 				<button
-					onClick={() =>
-						saveNote({ id: Date.now(), title: text, body: noteBody })
-					}
+					onClick={handleSave}
 					className='ml-2.5 py-1.25 px-2.5 border-none cursor-pointer bg-green-400 rounded-3xl text-white'
 				>
 					Save
