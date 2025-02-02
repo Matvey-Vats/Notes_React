@@ -5,7 +5,6 @@ export default function Header({
 	deleteNote,
 	toggleEdit,
 	noteBody,
-	// setBody,
 	selectedNote,
 	setNoteBody,
 }) {
@@ -25,7 +24,6 @@ export default function Header({
 		if (selectedNote) {
 			deleteNote(selectedNote.id)
 			setText('')
-			// setBody('')
 			setNoteBody('')
 		}
 	}
@@ -34,7 +32,6 @@ export default function Header({
 		if (text.trim() === '' && noteBody.trim() === '') return
 		saveNote({ id: Date.now(), title: text, body: noteBody })
 		setText('')
-		// setBody('')
 		setNoteBody('')
 	}
 

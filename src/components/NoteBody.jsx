@@ -4,8 +4,6 @@ import remarkGfm from 'remark-gfm'
 import '../styles/markdown_text.css'
 
 export default function NoteBody({
-	// body,
-	// setBody,
 	noteBody,
 	setNoteBody,
 	selectedNote,
@@ -20,7 +18,6 @@ export default function NoteBody({
 	}, [selectedNote])
 
 	function handleMarkdownText(e) {
-		// setBody(e.target.value)
 		setNoteBody(e.target.value)
 	}
 

@@ -87,14 +87,11 @@ function App() {
 					deleteNote={deleteNote}
 					toggleEdit={toggleEdit}
 					noteBody={noteBody}
-					// setBody={setBody}
 					selectedNote={selectedNote}
 					setSelectedNote={setSelectedNote}
 					setNoteBody={setNoteBody}
 				/>
 				<NoteBody
-					// body={body}
-					// setBody={setBody}
 					noteBody={noteBody}
 					setNoteBody={setNoteBody}
 					selectedNote={selectedNote}
