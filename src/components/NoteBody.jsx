@@ -4,8 +4,9 @@ import remarkGfm from 'remark-gfm'
 import '../styles/markdown_text.css'
 
 export default function NoteBody({
-	body,
-	setBody,
+	// body,
+	// setBody,
+	noteBody,
 	setNoteBody,
 	selectedNote,
 	isEditing,
@@ -13,13 +14,13 @@ export default function NoteBody({
 }) {
 	useEffect(() => {
 		if (selectedNote) {
-			setBody(selectedNote.body)
+			setNoteBody(selectedNote.body)
 			setIsEditing(false)
 		}
 	}, [selectedNote])
 
 	function handleMarkdownText(e) {
-		setBody(e.target.value)
+		// setBody(e.target.value)
 		setNoteBody(e.target.value)
 	}
 
@@ -28,7 +29,7 @@ export default function NoteBody({
 			<div className='flex flex-col w-full'>
 				{isEditing && (
 					<textarea
-						value={body}
+						value={noteBody}
 						onChange={handleMarkdownText}
 						className='grow w-full p-2.5 border-solid border-1 border-gray-200 h-64 resize-y dark:border-none'
 						placeholder='Write your Markdown here...'
@@ -40,7 +41,7 @@ export default function NoteBody({
 						className='markdown_text prose dark:prose-invert'
 						remarkPlugins={remarkGfm}
 					>
-						{body}
+						{noteBody}
 					</ReactMarkdown>
 				</div>
 			</div>

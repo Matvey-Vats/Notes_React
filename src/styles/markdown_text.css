@@ -88,3 +88,7 @@
 .markdown_text tr:nth-child(even) {
 	background-color: #f7fafc;
 }
+
+.markdown_text code {
+	background-color: #242424;
+}

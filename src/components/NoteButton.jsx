@@ -4,7 +4,7 @@ export default function NoteButton({ note, onChange }) {
 			onClick={() => onChange(note)}
 			className='w-full p-2.5 bg-white mb-1.5 rounded-2xl cursor-pointer text-black dark:bg-black dark:text-white'
 		>
-			{note.title}
+			{note.title ? note.title : 'New note'}
 		</button>
 	)
 }
