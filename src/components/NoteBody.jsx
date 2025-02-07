@@ -1,15 +1,13 @@
 import { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { useNotes } from '../NotesContext'
 import '../styles/markdown_text.css'
 
-export default function NoteBody({
-	noteBody,
-	setNoteBody,
-	selectedNote,
-	isEditing,
-	setIsEditing,
-}) {
+export default function NoteBody() {
+	const { noteBody, setNoteBody, selectedNote, isEditing, setIsEditing } =
+		useNotes()
+
 	useEffect(() => {
 		if (selectedNote) {
 			setNoteBody(selectedNote.body)

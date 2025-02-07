@@ -1,4 +1,8 @@
-export default function BurgerMenu({ toggleMenu }) {
+import { useNotes } from '../NotesContext'
+
+export default function BurgerMenu() {
+	const { toggleMenu } = useNotes()
+
 	return (
 		<div className='hidden absolute right-[3%] top-[3%] max-md:block'>
 			<button

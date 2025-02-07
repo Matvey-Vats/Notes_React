@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
+import { useNotes } from '../NotesContext'
 
-export default function Header({
-	saveNote,
-	deleteNote,
-	toggleEdit,
-	noteBody,
-	selectedNote,
-	setNoteBody,
-}) {
+export default function Header() {
 	const [text, setText] = useState('')
+	const {
+		saveNote,
+		deleteNote,
+		toggleEdit,
+		noteBody,
+		selectedNote,
+		setNoteBody,
+	} = useNotes()
 
 	useEffect(() => {
 		if (selectedNote) {

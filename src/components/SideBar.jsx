@@ -1,12 +1,9 @@
+import { useNotes } from '../NotesContext'
 import NoteButton from './NoteButton'
 import ToggleTheme from './ToggleTheme'
 
-export default function SideBar({
-	isOpen,
-	notes,
-	setSelectedNote,
-	addNewNote,
-}) {
+export default function SideBar() {
+	const { isOpen, notes, setSelectedNote, addNewNote } = useNotes()
 	return (
 		<>
 			<aside
