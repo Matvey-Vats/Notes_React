@@ -45,12 +45,3 @@ Once the app is running, you can:
 Add a new note by typing in the input box and clicking the "Add Note" button.
 Edit a note by clicking the edit icon next to the note.
 Delete a note by clicking the delete icon.
-Use Markdown to format your notes:
-# for headers
-- or * for unordered lists
-1. for ordered lists
-** for bold text
-* for italic text
-> for blockquotes
-![alt text](url) for images
-The notes will render the Markdown syntax in a formatted way.
